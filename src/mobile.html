@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Эстетик - Онлайн запись</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta property="og:title" content="Центр красоты Эстетик | Онлайн запись">
+    <meta property="og:description" content="Записывайтесь на прием к специалистам с вашего мобильного устройства, планшета или компьютера.">
+    <meta property="og:image" content="http://online.est5.ru/images/social/est-logo.png"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic&subset=latin,cyrillic"/>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="bootstrap/plugins.min.css"/>
+    <link rel="stylesheet/less" type="text/css" href="less/esthetic/mobile/page.less">
+    <link rel="stylesheet/less" type="text/css" href="less/esthetic/project.less">
+
+    <script>
+
+        var App = {
+            servicesLimit: 5,
+            ajaxCall: function (method, data, callback) {
+                var app = this;
+                $.ajax(this.siteUrl('ajax/' + method), {
+                    data: data,
+                    dataType: 'json',
+                    success: callback,
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        app.showDanger(errorThrown);
+                    }
+                });
+            },
+            /*
+             * type on of [ 'success', 'info', 'warning', 'danger' ];
+             */
+            showMessage: function (type, message, delay) {
+                var message = $('<div class="alert">')
+                    .addClass('alert-' + type)
+                    .text(message);
+                $('#global-messages').append(message);
+                if (delay > 0) {
+                    message.delay(delay).slideUp(400);
+                }
+            },
+            showDanger: function (message, delay) {
+                this.showMessage('danger', message, delay);
+            },
+            showSuccess: function (message, delay) {
+                this.showMessage('success', message, delay);
+            },
+            siteUrl: function (path) {
+                return 'http://online.est5.ru//' + path
+            },
+            baseUrl: function (path) {
+                return 'http://online.est5.ru//' + path
+            }
+        };
+    </script>
+</head>
+
+<body class="main-mobile">
+<nav id="main-nav" class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#main-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="color: #f8f0d2;">ЭСТЕТИК</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+            <ul class="nav navbar-nav nabvbar-menu">
+                <li><a href="http://est5.ru/tsentr-krasoty-i-zdorovya/vzroslye.html" target="_blank">Услуги красоты</a>
+                </li>
+                <li><a href="http://est5.ru/klinika-stomatologii-i-implantologii/vzroslye.html" target="_blank">Стоматология</a>
+                </li>
+                <li><a href="http://est5.ru/detskij-tsentr-razvitiya-i-tvorchestva.html" target="_blank">Детский
+                    центр</a></li>
+                <li><a href=" http://est5.ru/tsentr-samorazvitiya-i-samopoznaniya/joga.html" target="_blank">Йога</a>
+                </li>
+                <li><a href="http://est-shop.ru/" target="_blank">Интернет-магазин</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://online.est5.ru/dashboard">Личный кабинет</a></li>
+                <li><a href="http://online.est5.ru/auth/logout">Выйти</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="page-header contact-block-header">
+    <div class="container">
+        <div class="row">
+            <div class="logo hidden-xs">
+                <a href="http://online.est5.ru/">
+                    <img src="http://online.est5.ru/images/logo.png"/>
+                </a>
+            </div>
+            <div class="contacts">
+                <div class="row">
+                    <div class="address">
+                        <img src="http://online.est5.ru/images/icon-location.png" alt=""/>
+                        Москва, Алтуфьевское шоссе, 56
+                    </div>
+                    <div class="email">
+                        <img src="http://online.est5.ru/images/icon-email.png" alt=""/>
+                        <a href="mailto:direktor@est5.ru">direktor@est5.ru</a>
+                    </div>
+                    <div class="phone">
+                        <img src="http://online.est5.ru/images/icon-phone.png" alt=""/>
+                        +7 (495) 707 03 03
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="global-messages" class="container">
+</div><div class="container mobile-container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 text-center">
+            <div id="carousel-mobile-preview" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-mobile-preview" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-mobile-preview" data-slide-to="1"></li>
+                    <li data-target="#carousel-mobile-preview" data-slide-to="2"></li>
+                </ol>
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img src="img/mobile-screen2.png" alt="Мобильное приложение Эстетик">
+                    </div>
+                    <div class="item">
+                        <img src="img/mobile-screen3.png" alt="Мобильное приложение Эстетик">
+                    </div>
+                    <div class="item">
+                        <img src="img/mobile-screen4.png" alt="Мобильное приложение Эстетик">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-8 col-lg-9 text-center">
+            <h1>Мобильное приложение Эстетик</h1><br>
+            <dl class="lead">
+                <dt>Онлайн-запись на услуги центра "Эстетик" круглосуточно</dt>
+                <dd>Вы можете самостоятельно записаться и/или отменить запись, просмотреть все свои записи.</dd>
+            </dl>
+            <dl class="lead">
+                <dt>Запись без личного кабинета по номеру телефону.</dt>
+                <dd>Не обязательно иметь личный кабинет для записи! Вашего номера телефона будет достаточно
+                    для брони услуги!
+                </dd>
+            </dl>
+            <br/>
+            <br/>
+            <p class="lead text-bold text-uppercase">Скачайте приложение для Android или iOS <strong>абсолютно
+                бесплатно</strong>!</p>
+            <a href="https://play.google.com/store/apps/details?id=ru.est5.app&hl=ru">
+                <img class="img img-android-link" src="img/android-link.png"
+                     alt="Скачать Android приложение Эстетик"/>
+            </a>
+            <a href="https://itunes.apple.com/ru/app/estetik/id1127945351?mt=8">
+                <img class="img img-ios-link" src="img/ios-link.png" alt="Скачать IOS приложение Эстетик"/>
+            </a>
+        </div>
+    </div>
+</div>
+<br><br><div class="page-header contact-block-footer">
+    <div class="container">
+        <div class="row">
+            <div class="contacts">
+                <div class="row">
+                    <div class="address">
+                        <img src="http://online.est5.ru/images/icon-location.png" alt=""/>
+                        Москва, Алтуфьевское шоссе, 56
+                    </div>
+                    <div class="email">
+                        <img src="http://online.est5.ru/images/icon-email.png" alt=""/>
+                        <a href="mailto:direktor@est5.ru">direktor@est5.ru</a>
+                    </div>
+                    <div class="phone">
+                        <img src="http://online.est5.ru/images/icon-phone.png" alt=""/>
+                        <a href="tel:84957070303">+7 (495) 707 03 03</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript" src="script/plugins.min.js"></script>
+    <script type="text/javascript" src="script/estethic.min.js"></script>
+    <script type="text/javascript" src="script/less.js"></script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function () {
+            try {
+                w.yaCounter30026279 = new Ya.Metrika({
+                    id: 30026279,
+                    webvisor: true,
+                    clickmap: true,
+                    trackLinks: true,
+                    accurateTrackBounce: true
+                });
+            } catch (e) {
+            }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () {
+                n.parentNode.insertBefore(s, n);
+            };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else {
+            f();
+        }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript>
+    <div><img src="//mc.yandex.ru/watch/30026279" style="position:absolute; left:-9999px;" alt=""/></div>
+</noscript>
+<!-- /Yandex.Metrika counter -->
+
+</body>
+</html>

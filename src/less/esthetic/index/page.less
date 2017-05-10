@@ -1,0 +1,202 @@
+// ----------------------------------------------------------------------
+  // utils
+// ----------------------------------------------------------------------
+//@import "utils/_mixins.less";
+@import "utils/_variables.less";
+//@import "utils/_extends.less";
+//@import "utils/_reset.less";
+
+// ----------------------------------------------------------------------
+  // Layout
+// ----------------------------------------------------------------------
+
+@import "layout/_default.less";
+
+// ----------------------------------------------------------------------
+  // Modules
+// ----------------------------------------------------------------------
+
+
+
+// ----------------------------------------------------------------------
+	// Views
+// ----------------------------------------------------------------------
+//@import "theme/_blue.less";
+
+
+/* ------------ Body ------------- */
+
+body.main-index {
+  background: @body_bg_color;
+  #global-messages {
+    min-height: 0;
+    height: 0;
+    display: none;
+  }
+}
+
+.slider {
+  position: relative;
+  height: 400px;
+  background: url('img/slider.jpg') center center no-repeat;
+  background-size: auto 100%;
+  margin-top: -20px;
+  color: @slider_color;
+  .content {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 18px;
+    h1 {
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    .btn {
+      width: 200px;
+      margin: 0 10px 10px;
+    }
+  }
+}
+
+.btn-primary {
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+
+  &:active {
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  }
+}
+
+.btn-primary.active {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+
+.btn-primary {
+  background-image: -webkit-linear-gradient(top, #f8c957 0, #f6b61c 100%);
+  background-image: -o-linear-gradient(top, #f8c957 0, #f6b61c 100%);
+  background-image: linear-gradient(to bottom, #f8c957 0, #f6b61c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff8c957', endColorstr='#fff6b61c', GradientType=0, enabled=false);
+  background-repeat: repeat-x;
+  border-color: @btn-primary-border-color;
+
+  &:hover {
+    background: #f6b61c 0 -15px;
+  }
+
+  &:focus {
+    background: #f6b61c 0 -15px;
+  }
+
+  &:active {
+    background-color: @btn-primary-bg-color;
+    border-color: @btn-primary-border-color;
+  }
+
+  &:disabled {
+    background: #f6b61c none;
+  }
+}
+
+.btn-primary.active {
+  background-color: @btn-primary-bg-color;
+  border-color: @btn-primary-border-color;
+}
+
+.btn-primary[disabled] {
+  background: #f6b61c none;
+}
+
+#statements {
+  padding-top: 30px;
+
+  .item {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 150px;
+
+    .media-heading {
+      padding-top: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    ul {
+      padding-left: 18px;
+      list-style-type: square;
+    }
+  }
+}
+
+/* --------------------- Adaptive body -------------------- */
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .application-content {
+    margin-top: -140px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .application-content {
+    margin-top: -160px;
+  }
+}
+
+@media (min-width: 768px) {
+  #review {
+    margin-top: 150px;
+  }
+
+}
+
+@media (min-width: 992px) {
+  .slider {
+    .content {
+      top: 30%;
+    }
+  }
+}
+
+@media (max-width: 957px) {
+  .slider {
+    .content {
+      .or {
+        display: block;
+        text-align: center;
+        height: 33px;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  #statements {
+    .item {
+      float: left;
+      width: 50%;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  #statements {
+    .item {
+      float: left;
+      width: 33.33333333%;
+    }
+
+    .item-5 {
+      margin-left: 16.66666667%;
+    }
+  }
+}
+
+/* ---------------- End of Adaptive params ---------------- */

@@ -1,0 +1,61 @@
+// ----------------------------------------------------------------------
+// Local import
+// ----------------------------------------------------------------------
+//@import "utils/_mixins.less";
+@import "utils/_variables.less";
+//@import "utils/_reset.less";
+
+
+// ----------------------------------------------------------------------
+// Local import layouts styles
+// ----------------------------------------------------------------------
+@import "layout/_default.less";
+
+
+// ----------------------------------------------------------------------
+// Import page modules here (NO GLOBAL MODULES!)
+// ----------------------------------------------------------------------
+// @import "modules/search-block/module.less";
+// @import "modules/avatar/module.less";
+
+
+// ----------------------------------------------------------------------
+// All page less code here
+// ----------------------------------------------------------------------
+
+.mobile-container {
+  background: @cabinet-bg-color-1;
+  padding: 30px;
+}
+
+img.mobile-preview {
+  max-width: 250px;
+}
+
+.img-android-link {
+  max-width: 220px;
+}
+
+.img-ios-link {
+  max-width: 220px;
+}
+
+/* ----------- Adaptive params ------------- */
+
+@media (max-width: 360px) {
+  .img-android-link {
+    max-width: 120px;
+  }
+  .img-ios-link {
+    max-width: 120px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 760px) {
+  .img-android-link {
+    max-width: 140px;
+  }
+  .img-ios-link {
+    max-width: 140px;
+  }
+}

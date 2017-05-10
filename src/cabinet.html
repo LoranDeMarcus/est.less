@@ -1,0 +1,537 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Эстетик - Онлайн запись</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta property="og:title" content="Центр красоты Эстетик | Онлайн запись">
+    <meta property="og:description" content="Записывайтесь на прием к специалистам с вашего мобильного устройства, планшета или компьютера.">
+    <meta property="og:image" content="http://online.est5.ru/images/social/est-logo.png"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic&subset=latin,cyrillic"/>
+
+            <!-- CSS -->
+    <link rel="stylesheet" href="bootstrap/plugins.min.css"/>
+    <link rel="stylesheet/less" type="text/css" href="less/esthetic/cabinet/page.less">
+    <link rel="stylesheet/less" type="text/css" href="less/esthetic/project.less">
+    
+    <script>
+
+        var App = {
+            servicesLimit: 5,
+            ajaxCall: function (method, data, callback) {
+                var app = this;
+                $.ajax(this.siteUrl('ajax/' + method), {
+                    data: data,
+                    dataType: 'json',
+                    success: callback,
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        app.showDanger(errorThrown);
+                    }
+                });
+            },
+            /*
+             * type on of [ 'success', 'info', 'warning', 'danger' ];
+             */
+            showMessage: function (type, message, delay) {
+                var message = $('<div class="alert">')
+                    .addClass('alert-' + type)
+                    .text(message);
+                $('#global-messages').append(message);
+                if (delay > 0) {
+                    message.delay(delay).slideUp(400);
+                }
+            },
+            showDanger: function (message, delay) {
+                this.showMessage('danger', message, delay);
+            },
+            showSuccess: function (message, delay) {
+                this.showMessage('success', message, delay);
+            },
+            siteUrl: function (path) {
+                return 'http://online.est5.ru//' + path
+            },
+            baseUrl: function (path) {
+                return 'http://online.est5.ru//' + path
+            }
+        };
+    </script>
+</head>
+
+<body class="cabinet-index">
+<nav id="main-nav" class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#main-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="color: #f8f0d2;">ЭСТЕТИК</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+            <ul class="nav navbar-nav nabvbar-menu">
+                <li><a href="http://est5.ru/tsentr-krasoty-i-zdorovya/vzroslye.html" target="_blank">Услуги красоты</a>
+                </li>
+                <li><a href="http://est5.ru/klinika-stomatologii-i-implantologii/vzroslye.html" target="_blank">Стоматология</a>
+                </li>
+                <li><a href="http://est5.ru/detskij-tsentr-razvitiya-i-tvorchestva.html" target="_blank">Детский
+                        центр</a></li>
+                <li><a href=" http://est5.ru/tsentr-samorazvitiya-i-samopoznaniya/joga.html" target="_blank">Йога</a>
+                </li>
+                <li><a href="http://est-shop.ru/" target="_blank">Интернет-магазин</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://online.est5.ru/dashboard">Личный кабинет</a></li>
+                                    <li><a href="http://online.est5.ru/auth/logout">Выйти</a></li>
+                            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="page-header contact-block-header">
+    <div class="container">
+        <div class="row">
+            <div class="logo hidden-xs">
+                <a href="http://online.est5.ru/">
+                                            <img src="http://online.est5.ru/images/logo.png"/>
+                                    </a>
+            </div>
+            <div class="contacts">
+                <div class="row">
+                    <div class="address">
+                        <img src="http://online.est5.ru/images/icon-location.png" alt=""/>
+                        Москва, Алтуфьевское шоссе, 56
+                    </div>
+                    <div class="email">
+                        <img src="http://online.est5.ru/images/icon-email.png" alt=""/>
+                        <a href="mailto:direktor@est5.ru">direktor@est5.ru</a>
+                    </div>
+                    <div class="phone">
+                        <img src="http://online.est5.ru/images/icon-phone.png" alt=""/>
+                        +7 (495) 707 03 03
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="global-messages" class="container">
+    </div><div id="dashboard" class="container">
+    <div class="header well well-cabinet">
+        <h1 class="title">Личный кабинет</h1>
+        <p>Теперь ты можешь записаться к нам по 2 разным вариантам:</p>
+        <strong>Дата + Время</strong> – если тебе нужна конкретная дата и время и не важен
+        мастер.
+        <br/>
+        <strong>Любимый мастер</strong> – если ты хочешь записаться к любимому мастеру.
+        <br/>
+        <h4 class="text-center">Мы любим и ждем тебя всегда!</h4>
+
+        <div class="actions">
+            <a href="http://online.est5.ru/record/scenario/1" class="btn btn-primary btn-md">Любимый мастер</a>
+            <a href="http://online.est5.ru/record/scenario/2" class="btn btn-primary btn-md">Дата + Время</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container cabinet">
+            <ul class="nav nav-tabs center">
+                <li><a data-toggle="tab" href="#my-information">Мои данные</a></li>
+                <li class="active"><a data-toggle="tab" href="#my-records">Мои записи
+                        <span class="badge badge-orange">0</span></a></li>
+                <li class="menu-tab-settings"><a data-toggle="tab" href="#my-bonuses">Бонусная программа <sup>new</sup></a></li>
+                <li><a data-toggle="tab" href="#my-history">История посещений</a></li>
+                <li class="menu-tab-settings"><a data-toggle="tab" href="#settings">Настройки</a></li>
+            </ul>
+
+            <div class="tab-content">
+
+                <div id="my-information" class="tab-pane fade">
+                    <div class="row">
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+        <div class="bio panel panel-default dashboard-content-block">
+            <div class="panel-heading">
+                <h4>Данные по карте</h4>
+            </div>
+            <div class="panel-body">
+                <h3 class="client-name">Агилера Кристина Ведяевна</h3>
+                <h4 class="client-card">Карта № 0000015100</h4>
+                <div id="discounts-block">
+                    <table class="table table-condensed">
+                        <thead>
+                            <th>Бонусы по карте Эстетик:</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Клиника стоматологии:</td>
+                                <td><b>0%</b></td>
+                            </tr>
+                            <tr>
+                                <td>Клиника косметологии:</td>
+                                <td><b>10%</b></td>
+                            </tr>
+                            <tr>
+                                <td>Салон красоты:</td>
+                                <td><b>10%</b></td>
+                            </tr>
+                            <tr>
+                                <td>Эстетика тела:</td>
+                                <td><b>10%</b></td>
+                            </tr>
+                            <tr>
+                                <td>Детский центр:</td>
+                                <td><b>0%</b></td>
+                            </tr>
+                            <tr>
+                                <td>Центр саморазвития:</td>
+                                <td><b>0%</b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+        <div class="panel panel-default dashboard-content-block">
+            <div class="panel-heading">
+                <h4>Накопления и бонусы</h4>
+            </div>
+            <div class="panel-body panel-bonus">
+                <table class="table table-condensed table-bonus">
+                    <tbody>
+                    <tr class="first-tr">
+                        <td>Деньги на депозите:</td>
+                        <td class="value">0 руб.</td>
+                    </tr>
+                                        </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default dashboard-content-block">
+            <div class="panel-body">
+                <h4>Попробуйте онлайн-запись, установив наше новое мобильное приложение!</h4>
+                <div class="help-block">Личный кабинет, запись и информация об акциях в приложении
+                    для iOS и Android
+                </div>
+                <div class="text-center">
+                    <a href="/mobile" class="btn btn-primary">Скачать бесплатно</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                </div>
+
+                <div id="my-records" class="tab-pane fade in active">
+                    <div class="future panel panel-default dashboard-content-block records-panel">
+    <div class="panel-heading">
+        <h4>Твои записи на услуги</h4>
+    </div>
+    <div class="panel-body">
+                    <div class="empty-content-block text-center">
+                <h3 class="title">Нет записей</h3>
+                <div class="information">
+                    Запишитесь, используя <a class="bold-orange-link" href="/">онлайн-запись</a>
+                    или <a class="bold-orange-link" href="/mobile">мобильное приложение</a>
+                </div>
+            </div>
+            </div>
+</div>                </div>
+
+                <div id="my-bonuses" class="tab-pane fade">
+                    <div class="row cabinet-bonuses">
+    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+        <div class="panel panel-default dashboard-content-block">
+            <div class="panel-heading">
+                <h4>Доступные бонусы</h4>
+            </div>
+            <div class="panel-body">
+                <div class="bonus-balance">
+                                            <div class="empty-content-block text-center">
+                            <h3 class="title">Нет активных бонусных начислений</h3>
+                            <div class="information">
+                                Для получения информации о бонусах ознакомьтесь с разделом под этим блоком!
+                            </div>
+                        </div>
+                                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+        <div class="panel panel-default dashboard-content-block">
+            <div class="panel-heading">
+                <h4>История начислений</h4>
+            </div>
+            <div class="panel-body">
+                <div class="bonus-history">
+                                            <div class="history-empty">
+                            На данный момент у вас нет накопленных бонусов
+                        </div>
+                                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel panel-default dashboard-content-block">
+            <div class="panel-heading">
+                <h4>Информация о бонусной программе</h4>
+            </div>
+            <div class="panel-body">
+                <p>
+                    Начисление бонусов происходит после обслуживания в Центре Эстетик и оплаты стоимости за услугу в
+                    размере 100%,
+                    после начисляются бонусы в размере % дисконтной карты.<br>
+                    <strong>1 бонус = 1 рубль</strong><br>
+                    <strong>Пример начисления бонусов:</strong><br>
+                    Стоимость услуги  - 1000 рублей
+                    <ul>
+                        <li>Если 15% дисконтная карта, то 150 бонусов</li>
+                        <li>Если 10% дисконтная карта, то 100 бонусов</li>
+                        <li>Если 7% дисконтная карта, то 70 бонусов</li>
+                    </ul>
+                </p>
+                <p>
+                    <strong>Воспользоваться бонусами можно при следующем обслуживании!</strong>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>                </div>
+
+                <div id="my-history" class="tab-pane fade">
+                    <div class="history panel panel-default dashboard-content-block history-panel">
+    <div class="panel-heading">
+        <h4 class="pull-left">История <span class="history-full-title">посещений салона</span></h4>
+        <div class="pull-right">
+            <button id="filterHistory" type="button" class="btn btn-xs btn-default filter-history"
+                    data-toggle="collapse" data-target="#collapseHistoryFilter"
+                    aria-expanded="false"
+                    aria-controls="collapseHistoryFilter">
+                <span class="glyphicon glyphicon-filter"></span> <span
+                    class="btn-text">Фильтр</span>
+            </button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="collapse" id="collapseHistoryFilter">
+            <div class="well filter-panel">
+                <form id="record-filter" class="form" role="form">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="range">
+                                    <span class="glyphicon glyphicon-time"></span> Фильтр по времени
+                                </label>
+                                <select name="range" class="form-control input-sm">
+                                    <option value="all">за все время</option>
+                                    <option value="7">за последнюю неделю</option>
+                                    <option value="14">за последние 2 недели</option>
+                                    <option value="30">за последний месяц</option>
+                                    <option value="120">за последний квартал</option>
+                                    <option value="365">за последний год</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="range">
+                                    <span class="glyphicon glyphicon-th-list"></span> Фильтр по
+                                    направлениям
+                                </label>
+                                <select name="direction" id="services-distincts"
+                                        class="form-control input-sm">
+                                    <option value="all">Все направления</option>
+                                    <option value="202">Инфракрасная сауна</option>
+                                    <option value="30">Косметология</option>
+                                    <option value="54">Макияж</option>
+                                    <option value="125">Массаж и коррекция фигуры</option>
+                                    <option value="96">Наращивание ресниц</option>
+                                    <option value="28">Ногтевой сервис</option>
+                                    <option value="27">Парикмахерский зал</option>
+                                    <option value="45">Солярий</option>
+                                    <option value="115">Стоматология (взрослая)</option>
+                                    <option value="204">Стоматология (дети + подростки + студенты)
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <input type="hidden" name="service" value="all"/>
+        </form>
+        <div class="history-data empty">
+            <div class="empty-content-block text-center">
+                <h3 class="title">Нет записей истории посещения</h3>
+                <div class="information">
+                    Попробуйте выбрать с помощью фильтра нужное направление и время
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                </div>
+
+                <div id="settings" class="tab-pane fade">
+                    <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
+        <div class="panel panel-default dashboard-content-block settings-panel">
+            <div class="panel-heading">
+                <h4>Настройки</h4>
+            </div>
+            <div class="panel-body">
+                <div class="settings-group">
+                    <h4>Оповещения</h4>
+                    <form id="notifications-form">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="email"
+                                       value="true"                                        id="notifications"
+                                       data-toggle="tooltip" data-placement="top" data-delay="2000"
+                                       title="Настройки оповещения сохранены!">
+                                Я хочу получать оповещения на мой E-mail адрес о записях и отменах
+                            </label>
+
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="phone" value="true"
+                                     id="notifications"
+                                       data-toggle="tooltip" data-placement="top" data-delay="2000"
+                                       title="Настройки оповещения сохранены!">
+                                Я хочу получать на мой E-mail адрес информацию об акциях, предложениях и скидках
+                            </label>
+                        </div>
+                    </form>
+                </div>
+                <div class="settings-group">
+                    <h4>Социальные сети</h4>
+                    <a href="http://online.est5.ru/settings/social" class="dark-brown">Настроить вход через
+                        социальные
+                        сети</a>
+                </div>
+                <div class="settings-group">
+                    <h4>Email и номер телефона</h4>
+                    <form id="form-contacts-edit">
+                        <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <span class="glyphicon-envelope"></span>
+                                                </span>
+                            <input type="email" name="client_email" class="form-control email"
+                                   placeholder="Введите ваш E-mail" value="lulldev@yandex.ru" required/>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">+7</span>
+                            <input type="text" name="client_phone" class="form-control phone" minlength="10"
+                                   maxlength="10"
+                                   placeholder="9051234567" value="9177158894" required/>
+                        </div>
+                        <br>
+                        <a class="btn btn-primary btn-sm save-contacts">Сохранить</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+        <div class="panel panel-default dashboard-content-block">
+            <div class="panel-body">
+                <h4>Доступна функция обновления данных</h4>
+                <div class="help-block">
+                    Теперь, с помощью данного раздела, вы сможете мгновенно изменить
+                    ваш номер телефона и email
+                </div>
+            </div>
+        </div>
+    </div>
+</div>                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script language="javascript">
+    window.onload = function () {
+        InitCabinet();
+    };
+</script>
+
+
+<div class="page-header contact-block-footer">
+    <div class="container">
+        <div class="row">
+            <div class="contacts">
+                <div class="row">
+                    <div class="address">
+                        <img src="http://online.est5.ru/images/icon-location.png" alt=""/>
+                        Москва, Алтуфьевское шоссе, 56
+                    </div>
+                    <div class="email">
+                        <img src="http://online.est5.ru/images/icon-email.png" alt=""/>
+                        <a href="mailto:direktor@est5.ru">direktor@est5.ru</a>
+                    </div>
+                    <div class="phone">
+                        <img src="http://online.est5.ru/images/icon-phone.png" alt=""/>
+                        <a href="tel:74957070303">+7 (495) 707 03 03</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript" src="script/plugins.min.js"></script>
+    <script type="text/javascript" src="script/estethic.min.js"></script>
+    <script type="text/javascript" src="script/less.js"></script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function () {
+                try {
+                    w.yaCounter30026279 = new Ya.Metrika({
+                        id: 30026279,
+                        webvisor: true,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true
+                    });
+                } catch (e) {
+                }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () {
+                    n.parentNode.insertBefore(s, n);
+                };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript>
+        <div><img src="//mc.yandex.ru/watch/30026279" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+</body>
+</html>

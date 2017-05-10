@@ -1,0 +1,97 @@
+// ----------------------------------------------------------------------
+  // Base
+// ----------------------------------------------------------------------
+//@import "base/_mixins.less";
+@import "utils/_variables.less";
+//@import "base/_extends.less";
+//@import "base/_reset.less";
+
+.navbar-default {
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  background: @bg_color;
+  border: none;
+  .navbar-nav {
+    > li {
+      > a {
+        color: @font_color;
+        text-transform: uppercase;
+        &:hover {
+          color: @hover_color;
+        }
+      }
+    }
+  }
+}
+
+.navbar-brand {
+  color: @brand_color;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.navbar-nav {
+  > li {
+    > a {
+      color: @brand_color;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+  }
+}
+
+a.navbar-brand {
+  color: @brand_color;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.navbar-inverse {
+  background-image: -webkit-linear-gradient(top, #3c3c3c 0, #222 100%);
+  background-image: -o-linear-gradient(top, #3c3c3c 0, #222 100%);
+  background-image: linear-gradient(to bottom, #3c3c3c 0, #222 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c3c3c', endColorstr='#ff222222', GradientType=0, enabled=false);
+  .navbar-nav {
+    > .open {
+      > a {
+        background-image: -webkit-linear-gradient(top, #080808 0, #0f0f0f 100%);
+        background-image: -o-linear-gradient(top, #080808 0, #0f0f0f 100%);
+        background-image: linear-gradient(to bottom, #080808 0, #0f0f0f 100%);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff080808', endColorstr='#ff0f0f0f', GradientType=0);
+        -webkit-box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.25);
+        box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.25);
+      }
+    }
+    > .active {
+      > a {
+        background-image: -webkit-linear-gradient(top, #080808 0, #0f0f0f 100%);
+        background-image: -o-linear-gradient(top, #080808 0, #0f0f0f 100%);
+        background-image: linear-gradient(to bottom, #080808 0, #0f0f0f 100%);
+        background-repeat: repeat-x;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff080808', endColorstr='#ff0f0f0f', GradientType=0);
+        -webkit-box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.25);
+        box-shadow: inset 0 3px 9px rgba(0, 0, 0, 0.25);
+      }
+    }
+    > li {
+      > a {
+        text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+      }
+    }
+  }
+  .navbar-brand {
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  }
+}
+
+.navbar-static-top {
+  border-radius: 0;
+}
+
+.navbar-fixed-top {
+  border-radius: 0;
+}
+
+.navbar-fixed-bottom {
+  border-radius: 0;
+}
