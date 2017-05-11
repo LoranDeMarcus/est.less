@@ -1,0 +1,158 @@
+// ----------------------------------------------------------------------
+// Layout styles
+// ----------------------------------------------------------------------
+
+//.page-layout {
+//
+//}
+
+body {
+  background: @header_bg_color;
+}
+#main-nav {
+  margin-bottom: 0;
+}
+
+.page-header {
+  background-color: @header_bg_color;
+  margin: 0 0 20px 0;
+  border: 0;
+  padding-top: 20px;
+
+  .logo {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+
+    img {
+      position: absolute;
+      z-index: 100;
+    }
+  }
+
+  .contacts {
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 18px;
+  }
+}
+
+.page-header {
+  .contacts {
+    .address {
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 10px;
+    }
+
+    .email {
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 10px;
+    }
+
+    .phone {
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
+      padding-bottom: 10px;
+    }
+  }
+}
+
+.page-header {
+  .contacts {
+    a {
+      color: @contacts_color;
+      &:hover {
+        color: @contacts_color;
+      }
+    }
+  }
+}
+
+/* ------------------- Adaptive header -------------------- */
+
+@media (min-width: 768px) {
+  .page-header {
+    .logo {
+      float: left;
+      width: 33.33333333%;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .page-header {
+    .logo {
+      float: left;
+      width: 16.66666667%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .page-header {
+    .contacts {
+      font-size: 14px;
+    }
+  }
+
+  .contact-block-header {
+    display: none;
+  }
+
+  .contact-block-footer {
+    display: block;
+  }
+}
+
+@media (min-width: 768px) {
+  .contact-block-header {
+    display: block;
+  }
+
+  .contact-block-footer {
+    display: none;
+  }
+
+  .page-header {
+    .contacts {
+      float: left;
+      width: 66.66666667%;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .page-header {
+    .contacts {
+      float: left;
+      width: 83.33333333%;
+
+      .address {
+        float: left;
+        width: 41.66666667%;
+      }
+
+      .email {
+        float: left;
+        width: 25%;
+      }
+
+      .phone {
+        float: left;
+        width: 33.33333333%;
+      }
+    }
+  }
+}

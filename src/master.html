@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Эстетик - Онлайн запись</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta property="og:title" content="Центр красоты Эстетик | Онлайн запись">
+    <meta property="og:description" content="Записывайтесь на прием к специалистам с вашего мобильного устройства, планшета или компьютера.">
+    <meta property="og:image" content="http://test.online.est5.ru/images/social/est-logo.png"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic&subset=latin,cyrillic"/>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-datepicker3.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-select.min.css"/>
+        <!--CSS-->
+    <link rel="stylesheet/less" href="less/esthetic/master/page.less"/>
+    <link rel="stylesheet/less" href="less/esthetic/project.less"/>
+    <script>
+
+        var App = {
+            servicesLimit: 5,
+            ajaxCall: function (method, data, callback) {
+                var app = this;
+                $.ajax(this.siteUrl('ajax/' + method), {
+                    data: data,
+                    dataType: 'json',
+                    success: callback,
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        app.showDanger(errorThrown);
+                    }
+                });
+            },
+            /*
+             * type on of [ 'success', 'info', 'warning', 'danger' ];
+             */
+            showMessage: function (type, message, delay) {
+                var message = $('<div class="alert">')
+                    .addClass('alert-' + type)
+                    .text(message);
+                $('#global-messages').append(message);
+                if (delay > 0) {
+                    message.delay(delay).slideUp(400);
+                }
+            },
+            showDanger: function (message, delay) {
+                this.showMessage('danger', message, delay);
+            },
+            showSuccess: function (message, delay) {
+                this.showMessage('success', message, delay);
+            },
+            siteUrl: function (path) {
+                return 'http://test.online.est5.ru//' + path
+            },
+            baseUrl: function (path) {
+                return 'http://test.online.est5.ru//' + path
+            }
+        };
+    </script>
+</head>
+
+<body class="record-choose_master">
+<nav id="main-nav" class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#main-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="color: #f8f0d2;">ЭСТЕТИК</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+            <ul class="nav navbar-nav nabvbar-menu">
+                <li><a href="http://est5.ru/tsentr-krasoty-i-zdorovya/vzroslye.html" target="_blank">Услуги красоты</a>
+                </li>
+                <li><a href="http://est5.ru/klinika-stomatologii-i-implantologii/vzroslye.html" target="_blank">Стоматология</a>
+                </li>
+                <li><a href="http://est5.ru/detskij-tsentr-razvitiya-i-tvorchestva.html" target="_blank">Детский
+                    центр</a></li>
+                <li><a href=" http://est5.ru/tsentr-samorazvitiya-i-samopoznaniya/joga.html" target="_blank">Йога</a>
+                </li>
+                <li><a href="http://est-shop.ru/" target="_blank">Интернет-магазин</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://test.online.est5.ru/dashboard">Личный кабинет</a></li>
+                <li><a href="http://test.online.est5.ru/auth/logout">Выйти</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="page-header contact-block-header">
+    <div class="container">
+        <div class="row">
+            <div class="logo hidden-xs">
+                <a href="http://test.online.est5.ru/">
+                    <img src="http://test.online.est5.ru/images/logo.png"/>
+                </a>
+            </div>
+            <div class="contacts">
+                <div class="row">
+                    <div class="address">
+                        <img src="http://test.online.est5.ru/images/icon-location.png" alt=""/>
+                        Москва, Алтуфьевское шоссе, 56
+                    </div>
+                    <div class="email">
+                        <img src="http://test.online.est5.ru/images/icon-email.png" alt=""/>
+                        <a href="mailto:direktor@est5.ru">direktor@est5.ru</a>
+                    </div>
+                    <div class="phone">
+                        <img src="http://test.online.est5.ru/images/icon-phone.png" alt=""/>
+                        +7 (495) 707 03 03
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="global-messages" class="container">
+</div><div id="choose-master" class="container master-container" style="margin-top: 20px;">
+
+    <div class="steps steps4">
+        <div class="step passed">
+            <span class="value">1</span> шаг
+            <span class="title">Выбери услугу</span>
+        </div>
+        <div class="step active">
+            <span class="value">2</span> шаг
+            <span class="title">Выбери мастера</span>
+        </div>
+        <div class="step ">
+            <span class="value">3</span> шаг
+            <span class="title">Выбери дату и время</span>
+        </div>
+        <div class="step ">
+            <span class="value">4</span> шаг
+            <span class="title">Подтверди запись</span>
+        </div>
+    </div>    <div id="services-block">
+    <div class="choose-concrete-master">
+        <form name="master">
+            <h3 class="col-sm-12" align="center" style="color:#B48A27;">Покрытие гель-лаком (френч) ноги </h3>
+            <input type="hidden" name="services[]" value="24"/>
+
+            <!-- panels style -->
+            <div class="form-group">
+                <div class="col-sm-12 text-center">
+                    <div class="master-types btn-group" data-toggle="buttons" id="Id24">
+                        <label class="btn btn-default any active" id="Id24">
+                            <input type="checkbox">
+                            <small class='master-types-smalltext'>Все</small>
+                        </label>
+                        <label class="btn btn-default btn-label" data-class="1 класс "
+                               id="Id24">
+                            <input type="checkbox">
+                            <small class='master-types-smalltext'><b>1300 руб.</b></small>
+                            <small class='master-types-smalltext'>1 класс </small>
+                        </label>
+                        <label class="btn btn-default btn-label" data-class="Бизнес-класс"
+                               id="Id24">
+                            <input type="checkbox">
+                            <small class='master-types-smalltext'><b>1500 руб.</b></small>
+                            <small class='master-types-smalltext'>Бизнес-класс</small>
+                        </label>
+                        <label class="btn btn-default btn-label" data-class="Вип-мастер (Подолог)"
+                               id="Id24">
+                            <input type="checkbox">
+                            <small class='master-types-smalltext'><b>1850 руб.</b></small>
+                            <small class='master-types-smalltext'>Вип-мастер (Подолог)</small>
+                        </label>
+                        <label class="btn btn-default btn-label" data-class="Премиум-класc"
+                               id="Id24">
+                            <input type="checkbox">
+                            <small class='master-types-smalltext'><b>1850 руб.</b></small>
+                            <small class='master-types-smalltext'>Премиум-класc</small>
+                        </label>
+                        <label class="btn btn-default btn-label" data-class="Вип-мастер"
+                               id="Id24">
+                            <input type="checkbox">
+                            <small class='master-types-smalltext'><b>1850 руб.</b></small>
+                            <small class='master-types-smalltext'>Вип-мастер</small>
+                        </label>
+                        <label class="btn btn-default btn-label" data-class="Премиум-класс"
+                               id="Id24">
+                            <input type="checkbox">
+                            <small class='master-types-smalltext'><b>1850 руб.</b></small>
+                            <small class='master-types-smalltext'>Премиум-класс</small>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="Id24 col-sm-12">
+                    <!--        <h5><span class="glyphicon glyphicon-info-sign"></span> Выбери нескольких мастеров, чем больше выберешь, тем-->
+                    <!--            больше будет вариантов при выборе даты и времени.</h5>-->
+
+                    <div class="masters-list row">
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="1 класс "
+                             data-toggle="tooltip" data-placement="top"
+                             title="Выбери нескольких мастеров, чем больше выберешь, тем- больше будет вариантов при выборе даты и времени.">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="130"
+                            />
+                            <a class="master-link ">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00620" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Черепанова Евгения</h4>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">1 класс </span></p>
+
+                                    <p>Стоимость: <span class="value">1300 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="1 класс "
+                             data-toggle="tooltip" data-placement="top"
+                             title="Выбери нескольких мастеров, чем больше выберешь, тем- больше будет вариантов при выборе даты и времени.">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="78"
+                            />
+                            <a class="master-link ">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00548" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Рябцева Анастасия</h4>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">1 класс </span></p>
+
+                                    <p>Стоимость: <span class="value">1300 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Бизнес-класс"
+                             data-toggle="tooltip" data-placement="top"
+                             title="">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="14"
+                            />
+                            <a class="master-link master-vacation">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00409" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Акопджанян Яна</h4>
+                                    <span class="vacation-text">
+                            В декретном отпуске до 31.12.2017                                </span>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Бизнес-класс</span></p>
+
+                                    <p>Стоимость: <span class="value">1500 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Вип-мастер"
+                             data-toggle="tooltip" data-placement="top"
+                             title="Выбери нескольких мастеров, чем больше выберешь, тем- больше будет вариантов при выборе даты и времени.">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="22"
+                            />
+                            <a class="master-link ">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00238" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Севостьянова Елена</h4>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Вип-мастер</span></p>
+
+                                    <p>Стоимость: <span class="value">1850 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Вип-мастер"
+                             data-toggle="tooltip" data-placement="top"
+                             title="">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="20"
+                            />
+                            <a class="master-link master-vacation">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00235" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Иванова Анастасия</h4>
+                                    <span class="vacation-text">
+                            В декретном отпуске до 31.12.2017                                </span>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Вип-мастер</span></p>
+
+                                    <p>Стоимость: <span class="value">1850 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Вип-мастер"
+                             data-toggle="tooltip" data-placement="top"
+                             title="Выбери нескольких мастеров, чем больше выберешь, тем- больше будет вариантов при выборе даты и времени.">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="19"
+                            />
+                            <a class="master-link ">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00234" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Еропова Наталья</h4>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Вип-мастер</span></p>
+
+                                    <p>Стоимость: <span class="value">1850 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Премиум-класс"
+                             data-toggle="tooltip" data-placement="top"
+                             title="Выбери нескольких мастеров, чем больше выберешь, тем- больше будет вариантов при выборе даты и времени.">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="110"
+                            />
+                            <a class="master-link ">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00233" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Гаврилина Юлия</h4>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Премиум-класс</span></p>
+
+                                    <p>Стоимость: <span class="value">1850 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Премиум-класc"
+                             data-toggle="tooltip" data-placement="top"
+                             title="Выбери нескольких мастеров, чем больше выберешь, тем- больше будет вариантов при выборе даты и времени.">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="17"
+                            />
+                            <a class="master-link ">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00299" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Габрелян Нара</h4>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Премиум-класc</span></p>
+
+                                    <p>Стоимость: <span class="value">1850 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Премиум-класс"
+                             data-toggle="tooltip" data-placement="top"
+                             title="Выбери нескольких мастеров, чем больше выберешь, тем- больше будет вариантов при выборе даты и времени.">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="16"
+                            />
+                            <a class="master-link ">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00327" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Богданова Галина</h4>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Премиум-класс</span></p>
+
+                                    <p>Стоимость: <span class="value">1850 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Вип-мастер (Подолог)"
+                             data-toggle="tooltip" data-placement="top"
+                             title="Выбери нескольких мастеров, чем больше выберешь, тем- больше будет вариантов при выборе даты и времени.">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="15"
+                            />
+                            <a class="master-link ">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00264" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Аширбаева Диля</h4>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Вип-мастер (Подолог)</span></p>
+
+                                    <p>Стоимость: <span class="value">1850 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Премиум-класс"
+                             data-toggle="tooltip" data-placement="top"
+                             title="Выбери нескольких мастеров, чем больше выберешь, тем- больше будет вариантов при выборе даты и времени.">
+                            <input class="hidden" type="checkbox" name="master[24][]"
+                                   value="60"
+                            />
+                            <a class="master-link ">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00507" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Кузьмичева Мария</h4>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Премиум-класс</span></p>
+
+                                    <p>Стоимость: <span class="value">1850 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="col-sm-12" align="center" style="color:#B48A27;">Стоун терапия-спина (женский)</h3>
+            <input type="hidden" name="services[]" value="1363"/>
+
+            <div class="form-group">
+                <div class="Id1363 col-sm-12">
+                    <!--        <h5><span class="glyphicon glyphicon-info-sign"></span> Выбери нескольких мастеров, чем больше выберешь, тем-->
+                    <!--            больше будет вариантов при выборе даты и времени.</h5>-->
+
+                    <div class="masters-list row">
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Массажист"
+                             data-toggle="tooltip" data-placement="top"
+                             title="">
+                            <input class="hidden" type="checkbox" name="master[1363][]"
+                                   value="165"
+                            />
+                            <a class="master-link master-vacation">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00185" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Гусак Светлана</h4>
+                                    <span class="vacation-text">
+                            В декретном отпуске до 31.12.2017                                </span>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Массажист</span></p>
+
+                                    <p>Стоимость: <span class="value">1100 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                        <div class="master col-xs-12 col-sm-6 col-md-6 col-lg-4 "
+                             data-class="Массажист"
+                             data-toggle="tooltip" data-placement="top"
+                             title="Выбери нескольких мастеров, чем больше выберешь, тем- больше будет вариантов при выборе даты и времени.">
+                            <input class="hidden" type="checkbox" name="master[1363][]"
+                                   value="13"
+                            />
+                            <a class="master-link ">
+                                <div class="avatar">
+                                    <img src="http://test.online.est5.ru/photo/00374" alt="Фото мастера" class="img-circle"/>
+                                </div>
+                                <div class="info">
+                                    <h4>Свидерская Наталия</h4>
+                                    <div class="clearfix"></div>
+                                    <p>Класс: <span class="value">Массажист</span></p>
+
+                                    <p>Стоимость: <span class="value">1100 р.</span></p>
+                                </div>
+                                <div class="sign"><span class="glyphicon glyphicon-ok"></span></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<div class="container">
+    <!-- Nav buttons -->
+    <br/>
+    <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
+            <button data-toggle="tooltip" data-placement="right" data-original-title="Выбери мастера"
+                    id="choose-master-submit"
+                    class="col-lg-3 col-md-2 col-sm-6 col-xs-12 btn btn-lg btn-success"
+                    href="http://test.online.est5.ru/record/time"
+                    data-submit="http://test.online.est5.ru/record/master/submit"
+                    disabled>Далее
+            </button>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
+            <div class="row">
+                <div class="col-lg-6 col-md-5 col-sm-6 col-xs-12">
+                    <a id="choose-master-back" href="http://test.online.est5.ru/record/services"
+                       class="btn btn-lg btn-default btn-prev">Назад</a>
+                </div>
+                <div class="col-lg-6 col-md-5 col-sm-6 col-xs-6">
+                    <a id="choose-master-cancel" href="http://test.online.est5.ru/record/cancel"
+                       class="btn btn-lg btn-primary btn-cancel">Отмена</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <!-- Nav buttons -->
+</div>
+</div>
+
+<script language="javascript">
+    window.onload = function () {
+        InitChooseMaster();
+    };
+</script>
+
+
+<div class="page-header contact-block-footer">
+    <div class="container">
+        <div class="row">
+            <div class="contacts">
+                <div class="row">
+                    <div class="address">
+                        <img src="http://test.online.est5.ru/images/icon-location.png" alt=""/>
+                        Москва, Алтуфьевское шоссе, 56
+                    </div>
+                    <div class="email">
+                        <img src="http://test.online.est5.ru/images/icon-email.png" alt=""/>
+                        <a href="mailto:direktor@est5.ru">direktor@est5.ru</a>
+                    </div>
+                    <div class="phone">
+                        <img src="http://test.online.est5.ru/images/icon-phone.png" alt=""/>
+                        <a href="tel:84957070303">+7 (495) 707 03 03</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="script/plugins.min.js"></script>
+<script type="text/javascript" src="script/estethic.min.js"></script>
+<script type="text/javascript" src="script/less.js"></script>
+
+<script type="text/javascript" src="script/modernizr.min.js"></script>
+<script type="text/javascript" src="script/jquery-1.12.0.js"></script>
+<script type="text/javascript" src="script/bootstrap.js"></script>
+<script type="text/javascript" src="script/bootstrap-datepicker.js"></script>
+<script type="text/javascript"
+        src="script/bootstrap-datepicker.ru.min.js"></script>
+<script type="text/javascript" src="script/bootstrap-select.js"></script>
+<script type="text/javascript" src="script/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="script/bootstrap-notify.js"></script>
+
+<script type="text/javascript" src="script/waiting-control.js"></script>
+<script type="text/javascript" src="script/services.js"></script>
+<script type="text/javascript" src="script/choose-master.js"></script>
+<script type="text/javascript" src="script/choose-time.js"></script>
+<script type="text/javascript" src="script/freetime_filter.js"></script>
+<script type="text/javascript" src="script/confirm-form.js"></script>
+<script type="text/javascript" src="script/dashboard.js"></script>
+
+</body>
+</html>

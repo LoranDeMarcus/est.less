@@ -1,0 +1,130 @@
+// ----------------------------------------------------------------------
+// Local import
+// ----------------------------------------------------------------------
+//@import "utils/_mixins.less";
+@import "utils/_variables.less";
+//@import "utils/_reset.less";
+
+// ----------------------------------------------------------------------
+// Local import layouts styles
+// ----------------------------------------------------------------------
+@import "layout/_default.less";
+
+// ----------------------------------------------------------------------
+// Import page modules here (NO GLOBAL MODULES!)
+// ----------------------------------------------------------------------
+// @import "modules/search-block/module.less";
+// @import "modules/avatar/module.less";
+
+
+// ----------------------------------------------------------------------
+// All page less code here
+// ----------------------------------------------------------------------
+
+.master-container {
+  background: @master-bg-container-color;
+}
+
+.master-types {
+  margin-bottom: 20px;
+}
+
+.master-types-smalltext {
+  font-size: 11px;
+}
+
+#choose-master {
+  .master {
+    &:before {
+      content: " ";
+      display: table;
+    }
+    &:after {
+      content: " ";
+      display: table;
+      clear: both;
+    }
+    > a {
+      position: relative;
+      display: block;
+      height: 180px;
+      padding: 10px 10px 0 10px;
+    }
+    .avatar {
+      float: left;
+      width: 100px;
+      height: 100px;
+      margin-right: 10px;
+      > img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .info {
+      h4 {
+        margin-top: 5px;
+        margin-right: 5px;
+      }
+      p {
+        margin-bottom: 0;
+        color: @choose-master-color-1;
+        >.value {
+          color: @choose-master-color-2;
+        }
+      }
+      .vacation-text {
+        color: @choose-master-color-3;
+      }
+    }
+    .sign {
+      display: none;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+    }
+    &:hover {
+      > a {
+        background: #f8bf06;
+        color: @choose-master-color-2;
+        text-decoration: none;
+      }
+    }
+  }
+  .master.active {
+    .sign {
+      display: block;
+    }
+    > a {
+      background: #f8bf06;
+      color: @choose-master-color-2;
+      text-decoration: none;
+    }
+  }
+  .master-link {
+    cursor: pointer;
+  }
+  .master-vacation {
+    background: #f2eded;
+    .info {
+      color: @choose-master-color-2;
+    }
+  }
+  a.master-vacation {
+    &:hover {
+      background: #f2eded;
+    }
+  }
+}
+
+.btn-cancel,
+.btn-prev {
+  width: 100%;
+}
+
+/* ---------------- Adaptive params ---------------- */
+
+@media (max-width: 768px) {
+  .master-types {
+    display: none;
+  }
+}

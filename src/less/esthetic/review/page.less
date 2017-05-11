@@ -1,0 +1,159 @@
+// ----------------------------------------------------------------------
+// Local import
+// ----------------------------------------------------------------------
+//@import "utils/_mixins.less";
+@import "utils/_variables.less";
+//@import "utils/_reset.less";
+
+
+// ----------------------------------------------------------------------
+// Local import layouts styles
+// ----------------------------------------------------------------------
+@import "layout/_default.less";
+
+// ----------------------------------------------------------------------
+// Import page modules here (NO GLOBAL MODULES!)
+// ----------------------------------------------------------------------
+// @import "modules/search-block/module.less";
+// @import "modules/avatar/module.less";
+
+
+// ----------------------------------------------------------------------
+// All page less code here
+// ----------------------------------------------------------------------
+
+.confirm-action-block {
+  margin-top: 40px;
+}
+
+.confirm-preview {
+  margin-bottom: 20px;
+}
+
+#review {
+  padding-bottom: 40px;
+  .confirm-preview {
+    .confirm-methods {
+      font-size: 12px;
+    }
+  }
+  .total-price {
+    font-size: 14px;
+    > .value {
+      color: @review-color-1;
+      font-weight: bold;
+    }
+  }
+  .review-title {
+    color: @review-color-1;
+    font-size: 16px;
+  }
+  .review-master-name {
+    font-size: 14px;
+  }
+  .review-price {
+    font-weight: bold;
+    .value {
+      color: @review-color-1;
+    }
+    .strike {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.dashboard-content-block {
+  .panel-heading {
+    height: 40px;
+    > h4 {
+      margin-top: -1px;
+      font-size: 18px;
+      color: @review-color-1;
+    }
+  }
+}
+
+.review-services-list {
+  > li {
+    > .info {
+      > .price {
+        display: none;
+        > .value {
+          font-weight: bold;
+        }
+      }
+      display: table;
+      > p {
+        margin-bottom: 0;
+      }
+    }
+    height: 140px;
+    border-bottom: 1px dotted @review-color-2;
+    > .when {
+      font-size: 12px;
+      font-weight: bold;
+    }
+    > .photo {
+      width: 101px;
+      height: 101px;
+      float: left;
+      margin-right: 10px;
+      > img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    > .service-title {
+      color: @review-color-1;
+      margin-top: 0;
+    }
+  }
+  min-height: 130px;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.total-price {
+  font-size: 14px;
+  > .value {
+    color: @review-color-1;
+    font-weight: bold;
+  }
+}
+
+.color-gold {
+  color: @review-color-1;
+}
+
+.help-block {
+  p {
+    margin: 0 0 10px;
+  }
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: #737373;
+}
+
+/* Adaptive params */
+
+@media (min-width: 768px) {
+  #review {
+    margin-top: 150px;
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .review-services-list {
+    > li {
+      > .info {
+        font-size: 14px;
+      }
+      > .photo {
+        width: 70px;
+        height: 70px;
+      }
+      min-height: 130px;
+    }
+  }
+}

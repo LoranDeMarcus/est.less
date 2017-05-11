@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Эстетик - Онлайн запись</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta property="og:title" content="Центр    красоты Эстетик | Онлайн запись">
+    <meta property="og:description"
+          content="Записывайтесь на прием к специалистам с вашего мобильного устройства, планшета или компьютера.">
+    <meta property="og:image" content="http://test.online.est5.ru/images/social/est-logo.png"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic&subset=latin,cyrillic"/>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-datepicker3.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-select.min.css"/>
+    <!--CSS-->
+    <link rel="stylesheet/less" href="less/esthetic/review/page.less"/>
+    <link rel="stylesheet/less" href="less/esthetic/project.less"/>
+
+    <script>
+
+        var App = {
+            servicesLimit: 5,
+            ajaxCall: function (method, data, callback) {
+                var app = this;
+                $.ajax(this.siteUrl('ajax/' + method), {
+                    data: data,
+                    dataType: 'json',
+                    success: callback,
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        app.showDanger(errorThrown);
+                    }
+                });
+            },
+            /*
+             * type on of [ 'success', 'info', 'warning', 'danger' ];
+             */
+            showMessage: function (type, message, delay) {
+                var message = $('<div class="alert">')
+                    .addClass('alert-' + type)
+                    .text(message);
+                $('#global-messages').append(message);
+                if (delay > 0) {
+                    message.delay(delay).slideUp(400);
+                }
+            },
+            showDanger: function (message, delay) {
+                this.showMessage('danger', message, delay);
+            },
+            showSuccess: function (message, delay) {
+                this.showMessage('success', message, delay);
+            },
+            siteUrl: function (path) {
+                return 'http://test.online.est5.ru//' + path
+            },
+            baseUrl: function (path) {
+                return 'http://test.online.est5.ru//' + path
+            }
+        };
+    </script>
+</head>
+
+<body class="main-index">
+<nav id="main-nav" class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#main-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="color: #f8f0d2;">ЭСТЕТИК</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+            <ul class="nav navbar-nav nabvbar-menu">
+                <li><a href="http://est5.ru/tsentr-krasoty-i-zdorovya/vzroslye.html" target="_blank">Услуги красоты</a>
+                </li>
+                <li><a href="http://est5.ru/klinika-stomatologii-i-implantologii/vzroslye.html" target="_blank">Стоматология</a>
+                </li>
+                <li><a href="http://est5.ru/detskij-tsentr-razvitiya-i-tvorchestva.html" target="_blank">Детский
+                    центр</a></li>
+                <li><a href=" http://est5.ru/tsentr-samorazvitiya-i-samopoznaniya/joga.html" target="_blank">Йога</a>
+                </li>
+                <li><a href="http://est-shop.ru/" target="_blank">Интернет-магазин</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://test.online.est5.ru/dashboard">Личный кабинет</a></li>
+                <li><a href="http://test.online.est5.ru/auth/logout">Выйти</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="page-header contact-block-header">
+    <div class="container">
+        <div class="row">
+            <div class="logo hidden-xs">
+                <a href="http://test.online.est5.ru/">
+                    <img src="http://test.online.est5.ru/images/logo.png"/>
+                </a>
+            </div>
+            <div class="contacts">
+                <div class="row">
+                    <div class="address">
+                        <img src="http://test.online.est5.ru/images/icon-location.png" alt=""/>
+                        Москва, Алтуфьевское шоссе, 56
+                    </div>
+                    <div class="email">
+                        <img src="http://test.online.est5.ru/images/icon-email.png" alt=""/>
+                        <a href="mailto:direktor@est5.ru">direktor@est5.ru</a>
+                    </div>
+                    <div class="phone">
+                        <img src="http://test.online.est5.ru/images/icon-phone.png" alt=""/>
+                        +7 (495) 707 03 03
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="global-messages" class="container">
+</div>
+
+<div class="application-content">
+    <div id="review" class="container">
+
+        <div class="container">
+            <div class="steps steps4">
+                <div class="step passed">
+                    <span class="value">1</span> шаг
+                    <span class="title">Выбери услугу</span>
+                </div>
+                <div class="step passed">
+                    <span class="value">2</span> шаг
+                    <span class="title">Выбери мастера</span>
+                </div>
+                <div class="step passed">
+                    <span class="value">3</span> шаг
+                    <span class="title">Выбери дату и время</span>
+                </div>
+                <div class="step active">
+                    <span class="value">4</span> шаг
+                    <span class="title">Подтверди запись</span>
+                </div>
+            </div>
+        </div>
+        <div class="confirm-action-block confirm-preview">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="panel panel-default dashboard-content-block">
+                        <div class="panel-heading">
+                            <h4>Выбранные услуги</h4>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="review-services-list">
+                            </ul>
+                            <div class="total-price">
+                                Итого: <span class="value">0 руб.</span>
+                                Будет начислено бонусов: <span class="value">0 руб.</span>
+                            </div>
+                            <br>
+                        </div>
+                        <div class="panel-footer text-center">
+                            <a href="http://test.online.est5.ru/record/time"
+                               class="btn btn-md btn-default">Назад</a>
+                            <button id="review-logged-in-confirm" class="btn btn-md btn-success">Подтвердить</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="record-bonus">
+                                <h4>Хочешь получить бонус на свою карту?</h4>
+                                <div class="help-block">
+                                    <p>Расскажи о нас в социальных сетях и получи бонус до 100 рублей на услуги в Эстетик!
+                                        Чем больше репостов - тем выше твой бонус!</p>
+                                </div>
+                                <div class="text-center">
+                                    <script src="https://utail.com/server/index.php/widget.js?code_id=33"></script>
+                                    <input name="utail-user-id" class="hidden"/>
+                                    <div class="utail-balance">Получено средств в подарок:
+                                        <strong class="color-gold">
+                                            <span class="value">0</span> руб.
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                </div>
+            </div>
+
+
+
+
+        </div>
+
+        <div class="modal fade" id="modalComplimentChoose" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Выбрать комплимент</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <img src="/images/podarok1.png" />
+                            <h4 class="service-title"></h4>
+                            <div class="help-block">
+                                Комплимент является бесплатной услугой или товаром, который вы обязательно
+                                должны указать при онлайн-записи.
+                                <div class="error text-danger" style="display: none;"></div>
+                            </div>
+                            <form class="compliments">
+                                <div class="form-group">
+                                    <select class="form-control choose-complement"></select>
+                                </div>
+                                <input type="hidden" name="compliment-info" value="" />
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer" align="center">
+                        <button class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <button class="btn btn-primary btn-choose-compliment" style="display: none;">Применить</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            window.onload = function () {
+
+                InitRecordConfirm();
+
+                var hWaitControl = new WaitingControl(
+                    60 * 10,
+                    {
+                        message_title: "Уважаемый клиент!",
+                        message_text: "Через 2-3 минуты вы будете перенаправлены на " +
+                        "главную страницу и бронь всех выбранных услуг будет снята"
+                    },
+                    '/record/cancel'
+                );
+
+//        hWaitControl.waitAndRedirect();
+
+                $('#btn-utail-share-33').addClass('btn btn-primary btn-md').text('Получить бонус');
+                $('input[name=utail-user-id]').attr('value', UTail.userId());
+
+                $('.bonus').show().children().text(UTail.discount());
+            };
+        </script></div>
+
+    <div class="page-header contact-block-footer">
+        <div class="container">
+            <div class="row">
+                <div class="contacts">
+                    <div class="row">
+                        <div class="address">
+                            <img src="http://test.online.est5.ru/images/icon-location.png" alt=""/>
+                            Москва, Алтуфьевское шоссе, 56
+                        </div>
+                        <div class="email">
+                            <img src="http://test.online.est5.ru/images/icon-email.png" alt=""/>
+                            <a href="mailto:direktor@est5.ru">direktor@est5.ru</a>
+                        </div>
+                        <div class="phone">
+                            <img src="http://test.online.est5.ru/images/icon-phone.png" alt=""/>
+                            <a href="tel:74957070303">+7 (495) 707 03 03</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="script/plugins.min.js"></script>
+    <script type="text/javascript" src="script/estethic.min.js"></script>
+    <script type="text/javascript" src="script/less.js"></script>
+
+    <script type="text/javascript" src="script/modernizr.min.js"></script>
+    <script type="text/javascript" src="script/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="script/bootstrap.js"></script>
+    <script type="text/javascript" src="script/bootstrap-datepicker.js"></script>
+    <script type="text/javascript"
+            src="script/bootstrap-datepicker.ru.min.js"></script>
+    <script type="text/javascript" src="script/bootstrap-select.js"></script>
+    <script type="text/javascript" src="script/bootstrap-select.min.js"></script>
+    <script type="text/javascript" src="script/bootstrap-notify.js"></script>
+
+    <script type="text/javascript" src="script/waiting-control.js"></script>
+    <script type="text/javascript" src="script/services.js"></script>
+    <script type="text/javascript" src="script/choose-master.js"></script>
+    <script type="text/javascript" src="script/choose-time.js"></script>
+    <script type="text/javascript" src="script/freetime_filter.js"></script>
+    <script type="text/javascript" src="script/confirm-form.js"></script>
+    <script type="text/javascript" src="script/dashboard.js"></script>
+
+</body>
+</html>

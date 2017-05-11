@@ -100,7 +100,6 @@
     background-repeat: repeat-x;
     border-color: #dbdbdb;
     text-shadow: 0 1px 0 #fff;
-    border-color: #ccc
 }
 
 .btn-default:hover,
@@ -268,22 +267,6 @@
 .btn-group > .btn:last-child {
     border-right: none
 }
-
-@media (max-width: 360px) {
-}
-
-@media (min-width: 480px) and (max-width: 760px) {
-
-}
-
-@media (min-width: 768px) and (max-width: 970px) {
-
-}
-
-@media (min-width: 1200px) {
-
-}
-
 
 /* big yellow buttons */
 
