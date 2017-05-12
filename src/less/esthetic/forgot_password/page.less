@@ -1,32 +1,28 @@
 // ----------------------------------------------------------------------
-// Content sizes
+// Local import
 // ----------------------------------------------------------------------
-// @header-height-phone: 80px;
-// @navbar-padding: 20px;
+//@import "utils/_mixins.less";
+@import "utils/_variables.less";
+//@import "utils/_reset.less";
 
 
 // ----------------------------------------------------------------------
-// Font Sizes
+// Local import layouts styles
 // ----------------------------------------------------------------------
-//@fs-anything-text: 12px;
-//@fs-anything-title: 14px;
+//@import "layout/_default.less";
 
 
 // ----------------------------------------------------------------------
-// Font colors
+// Import page modules here (NO GLOBAL MODULES!)
 // ----------------------------------------------------------------------
-//@fc-anything-text: #000;
-//@fc-anything-title: #fff;
+// @import "modules/search-block/module.less";
+// @import "modules/avatar/module.less";
 
 
 // ----------------------------------------------------------------------
-// Font Families
+// All page less code here
 // ----------------------------------------------------------------------
-//@ff-helvetica: Helvetica, Arial, sans-serif;
 
-
-// ----------------------------------------------------------------------
-// Background colors
-// ----------------------------------------------------------------------
-//@bg-anything-block: #000;
-//@bg-anything-panel: #fff;
+.white-container {
+  background: @white-container;
+}

@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="bootstrap/css/bootstrap-datepicker3.min.css"/>
     <link rel="stylesheet" href="bootstrap/css/bootstrap-select.min.css"/>
-    <!-- CSS -->
+    <!--CSS-->
     <link rel="stylesheet" href="bootstrap/plugins.min.css"/>
     <link rel="stylesheet" type="text/css" href="est.min.css">
 
@@ -126,6 +126,9 @@
 </div>
 
 <div id="global-messages" class="container">
+    <div class="alert alert-info">
+        <span class="glyphicon glyphicon-exclamation-sign"></span>
+        <p>Авторизация прошла успешно</p>        </div>
 </div>
 
 <div class="application-content">
@@ -160,9 +163,27 @@
                         </div>
                         <div class="panel-body">
                             <ul class="review-services-list">
+                                <li>
+                                    <input type="hidden" class="date" value="2017-05-17"/>
+                                    <input type="hidden" class="master-id" value="34"/>
+                                    <input type="hidden" class="service-id" value="280"/>
+                                    <input type="hidden" class="remote-service-id" name="service_remote_id" value="00000005594"/>
+                                    <input type="hidden" class="time-from" value="675"/>
+                                    <h4 class="when">
+                                        17 Май,
+                                        11:15 - 11:45                    </h4>
+                                    <div class="photo">
+                                        <img src="http://test.online.est5.ru/photo/00408" class="img-circle" alt="Фото мастера"/>
+                                    </div>
+                                    <div class="info">
+                                        <div class="review-title service-title">В-6 минут</div>
+                                        <div class="review-master-name">Солярий (вертикальный)  . (Солярий)</div>
+                                        <div class="review-price">Цена: <span class="value">90 руб.</span></div>
+                                    </div>
+                                </li>
                             </ul>
                             <div class="total-price">
-                                Итого: <span class="value">0 руб.</span>
+                                Итого: <span class="value">90 руб.</span>
                                 Будет начислено бонусов: <span class="value">0 руб.</span>
                             </div>
                             <br>
@@ -280,10 +301,6 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="script/plugins.min.js"></script>
-    <script type="text/javascript" src="script/estethic.min.js"></script>
-    <script type="text/javascript" src="script/less.js"></script>
-
     <script type="text/javascript" src="script/modernizr.min.js"></script>
     <script type="text/javascript" src="script/jquery-1.12.0.js"></script>
     <script type="text/javascript" src="script/bootstrap.js"></script>
@@ -300,7 +317,19 @@
     <script type="text/javascript" src="script/choose-time.js"></script>
     <script type="text/javascript" src="script/freetime_filter.js"></script>
     <script type="text/javascript" src="script/confirm-form.js"></script>
+
+    <script type="text/javascript" src="script/compliments.js"></script>
+    <script type="text/javascript" src="script/events.js"></script>
+
+    <script type="text/javascript" src="script/advertising.js"></script>
+    <script type="text/javascript" src="script/events1.js"></script>
+
     <script type="text/javascript" src="script/dashboard.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function(){var a=!1,b=document.createElement("div");b.innerHTML="&nbsp;",b.className="adsbox",document.body.appendChild(b),window.setTimeout(function(){if(0===b.offsetHeight&&(a=!0),b.remove(),a){$.notify("<strong>Обнаружен блокировщик рекламы!</strong><br />Убедительная просьба отключить AdBlock на время онлайн записи, т.к это позволитвоспользоваться всеми дополнительными функциями и рекомендациями.",{type:"info",allow_dismiss:!0,delay:1e5})}},100)});
+    </script>
 
 </body>
 </html>

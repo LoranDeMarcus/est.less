@@ -64,46 +64,6 @@
 }
 
 
-@btn-success-bg-color-1: #419641;
-@btn-success-border-color-1: #3e8f3e;
-
-.btn-success {
-  &:active {
-    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    background-color: @btn-success-bg-color-1;
-    border-color: @btn-success-border-color-1;
-  }
-  .badge {
-    text-shadow: none;
-  }
-  background-image: -webkit-linear-gradient(top, #5cb85c 0, #419641 100%);
-  background-image: -o-linear-gradient(top, #5cb85c 0, #419641 100%);
-  background-image: linear-gradient(to bottom, #5cb85c 0, #419641 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff419641', GradientType=0);
-  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
-  background-repeat: repeat-x;
-  border-color: @btn-success-border-color-1;
-  &:hover {
-    background: #419641 0 -15px;
-  }
-  &:focus {
-    background: #419641 0 -15px;
-  }
-  &:disabled {
-    background: #419641 none;
-  }
-}
-.btn-success.active {
-  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  background-color: @btn-success-bg-color-1;
-  border-color: @btn-success-border-color-1;
-}
-.btn-success[disabled] {
-  background: #419641 none;
-}
-
 /* ----------- Adaptive params ------------- */
 
 @media (min-width: 768px) {
