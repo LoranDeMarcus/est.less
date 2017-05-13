@@ -7,22 +7,25 @@
 
 
 // ----------------------------------------------------------------------
-// Local import layouts styles
+// If module is large, use partials import
 // ----------------------------------------------------------------------
-//@import "layout/_default.less";
+//@import "partials/_partial.less";
+//@import "partials/_piece-something.less";
 
 
 // ----------------------------------------------------------------------
-// Import page modules here (NO GLOBAL MODULES!)
+// All module less code here
 // ----------------------------------------------------------------------
-// @import "modules/search-block/module.less";
-// @import "modules/avatar/module.less";
+
+//.module {
+//
+//}
 
 
 // ----------------------------------------------------------------------
-// All page less code here
+// All module media queries here (after both code)
 // ----------------------------------------------------------------------
 
-.white-container {
-  background: @white-container-color;
-}
+//@media @smartphones {
+//  font-size: @font-size--medium;
+//}
