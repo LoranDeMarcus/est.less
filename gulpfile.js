@@ -1,14 +1,15 @@
 var gulp = require("gulp");
 var argv = require("yargs").argv;
-var copy = require('gulp-copy');
+var copy = require("gulp-copy");
 
 var gulp = require("gulp"),
   minify = require("gulp-clean-css"),
-  inlineFonts = require('gulp-inline-fonts'),
-  lessImport = require('gulp-less-import'),
+  inlineFonts = require("gulp-inline-fonts"),
+  lessImport = require("gulp-less-import"),
   less = require("gulp-less"),
-  concat = require("gulp-concat");
-
+  concat = require("gulp-concat"),
+  clean = require("gulp-clean");
+  
 var evernotelessConfig = {
     evernotelessCorePath: "./evernoteless",
     evernotelessBlankProject: "./evernoteless/blank-project",
@@ -36,12 +37,12 @@ gulp.task("create-less-page", function() {
 
 gulp.task("create-less-module", function() {
     var project = argv.project;
-    var modulePath = !!argv.page ? argv.page + "/modules" : 'global-modules';
+    var modulePath = !!argv.page ? argv.page + "/modules" : "global-modules";
     var name = argv.name;
 
     if (!!project && !!name) {
             gulp.src(evernotelessConfig.evernotelessBlankModule + "/**/*")
-                 .pipe(gulp.dest(evernotelessConfig.lessSrc + "/" + project + '/' + modulePath + "/" + name));
+                 .pipe(gulp.dest(evernotelessConfig.lessSrc + "/" + project + "/" + modulePath + "/" + name));
     }
 });
 
@@ -55,6 +56,11 @@ gulp.task("minify-less", function () {
 });
 
 gulp.task("build", ["minify-less"], function () {
-  return gulp.src(['!./src/less/**/*', './src/**/*', './src/*.html'])
-  .pipe(gulp.dest('./build'));
+  return gulp.src(["!./src/less/**/*", "./src/**/*", "./src/*.html"])
+  .pipe(gulp.dest("./build"))
+});
+
+gulp.task("clean", function () {
+  return gulp.src("./build/less", {read: false})
+  .pipe(clean());
 });
