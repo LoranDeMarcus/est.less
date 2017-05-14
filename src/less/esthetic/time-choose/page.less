@@ -1,0 +1,296 @@
+// ----------------------------------------------------------------------
+// Local import
+// ----------------------------------------------------------------------
+@import "utils/_mixins.less";
+@import "utils/_variables.less";
+@import "utils/_reset.less";
+
+
+// ----------------------------------------------------------------------
+// Local import layouts styles
+// ----------------------------------------------------------------------
+@import "layout/_default.less";
+
+
+// ----------------------------------------------------------------------
+// Import page modules here (NO GLOBAL MODULES!)
+// ----------------------------------------------------------------------
+// @import "modules/search-block/module.less";
+// @import "modules/avatar/module.less";
+
+
+// ----------------------------------------------------------------------
+// All page less code here
+// ----------------------------------------------------------------------
+
+#choose-time {
+  margin-top: 80px;
+  padding-top: 25px;
+}
+
+#choose-time-cancel {
+  min-width: 175px;
+}
+
+#choose-time-back {
+  min-width: 175px;
+}
+
+#choose-time-submit {
+  min-width: 175px;
+}
+
+#time-form {
+  h3 {
+    &:not(.popover-title) {
+      text-transform: uppercase;
+      margin-top: 0;
+    }
+    &:not(.popover-title).choose-date-title {
+      margin-left: 30px;
+    }
+  }
+  .service {
+    .time {
+      position: relative;
+      >span {
+        display: none;
+        height: 36px;
+        line-height: 36px;
+      }
+    }
+  }
+  .service.no-time {
+    >.time {
+      padding-right: 20px;
+      >span {
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+  #services-list {
+    .popover {
+      .masters-popover {
+        list-style-type: none;
+        padding-left: 0;
+        li {
+          border-bottom: 1px solid #e8e6e0;
+          padding: 5px 0;
+          &:last-child {
+            border-bottom: none;
+          }
+          a {
+            display: block;
+            min-width: 250px;
+            color: @text-primary-color;
+            &:before {
+              content: " ";
+              display: table;
+            }
+            &:after {
+              content: " ";
+              display: table;
+              clear: both;
+            }
+            &:hover {
+              color: @text-primary-color;
+              text-decoration: none;
+            }
+            >.name {
+              display: block;
+            }
+            >.class {
+              display: block;
+              clear: both;
+              color: @time-form-color-2;
+            }
+            >.duration {
+              float: left;
+            }
+            >.price {
+              float: right;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.preloader-block {
+  padding: 30px;
+  text-align: center;
+  .preloader {
+    width: 110px;
+    height: 110px;
+    background: url('img/loading.gif') center center no-repeat;
+    text-align: center;
+  }
+  .message {
+    margin-top: 15px;
+    font-size: 16px;
+  }
+}
+
+#datepicker {
+  .prev {
+    color: @datepicker-color-1;
+    &:hover {
+      color: @datepicker-color-2;
+      text-decoration: underline;
+    }
+  }
+  .next {
+    color: @datepicker-color-1;
+    &:hover {
+      color: @datepicker-color-2;
+      text-decoration: underline;
+    }
+  }
+  .day {
+    font-size: 17px;
+    &:not(.disabled) {
+      color: @datepicker-color-3;
+      font-weight: bold;
+      &:hover {
+        background: green;
+        color: @datepicker-color-4;
+      }
+    }
+    &:not(.disabled).active {
+      background: green;
+      color: @datepicker-color-4;
+    }
+  }
+  .today {
+    color: @datepicker-color-5;
+    background: #fff;
+    border: 2px solid #DBC981;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    border-radius: 2px;
+    &:not(.disabled) {
+      color: @datepicker-color-3;
+    }
+  }
+  table {
+    width: 100%;
+  }
+}
+
+.datepicker-inline {
+  width: inherit;
+}
+
+.datepicker-days {
+  width: inherit;
+}
+
+#datepicker table {
+  width: 100%;
+}
+
+.free-time-filter {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+
+
+#select-time {
+  &:not(.disabled) {
+    color: @select-time-color-1;
+  }
+  option.null {
+    color: @text-primary-color;
+  }
+  option[selected="selected"] {
+    color: @text-primary-color;
+  }
+  >option {
+    &:hover {
+      color: @text-primary-color;
+    }
+  }
+}
+#select-time[disabled="disabled"] {
+  color: @select-time-color-2;
+}
+
+.service {
+  .data {
+    margin-top: 10px;
+    list-style-type: none;
+    padding-left: 0;
+    line-height: 150%;
+    color: @service-text-color;
+    .value {
+      color: @text-primary-color;
+    }
+  }
+}
+
+/* -------------- Adaptive params -------------- */
+
+@media (max-width: 768px) {
+  #choose-time {
+    margin-top: -5px;
+  }
+  .choose-date-title {
+    text-align: center;
+  }
+  .choose-time-title {
+    text-align: center;
+  }
+  .choose-time-help {
+    text-align: center;
+  }
+  #time-form {
+    h3 {
+      &:not(.popover-title).choose-date-title {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .choose-date-title {
+    text-align: center;
+  }
+  .choose-time-title {
+    text-align: center;
+  }
+  .choose-time-help {
+    text-align: center;
+  }
+  #time-form {
+    h3 {
+      &:not(.popover-title).choose-date-title {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  #time-form {
+    #services-list {
+      .popover {
+        display: none !important;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .selectpicker {
+    data-mobile: true;
+  }
+}

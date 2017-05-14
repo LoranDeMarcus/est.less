@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Эстетик - Онлайн запись</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta property="og:title" content="Центр красоты Эстетик | Онлайн запись">
+    <meta property="og:description" content="Записывайтесь на прием к специалистам с вашего мобильного устройства, планшета или компьютера.">
+    <meta property="og:image" content="http://test.online.est5.ru/images/social/est-logo.png"/>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=PT+Sans:400,700,400italic&subset=latin,cyrillic"/>
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-datepicker3.min.css"/>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap-select.min.css"/>
+    <!--CSS-->
+    <link rel="stylesheet" href="bootstrap/plugins.min.css"/>
+    <!--link rel="stylesheet/less" type="text/css" href="est.min.css"-->
+    <link rel="stylesheet" href="bootstrap/plugins.min.css"/>
+    <link rel="stylesheet" type="text/css" href="est.min.css">
+    <script>
+
+        var App = {
+            servicesLimit: 5,
+            ajaxCall: function (method, data, callback) {
+                var app = this;
+                $.ajax(this.siteUrl('ajax/' + method), {
+                    data: data,
+                    dataType: 'json',
+                    success: callback,
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        app.showDanger(errorThrown);
+                    }
+                });
+            },
+            /*
+             * type on of [ 'success', 'info', 'warning', 'danger' ];
+             */
+            showMessage: function (type, message, delay) {
+                var message = $('<div class="alert">')
+                    .addClass('alert-' + type)
+                    .text(message);
+                $('#global-messages').append(message);
+                if (delay > 0) {
+                    message.delay(delay).slideUp(400);
+                }
+            },
+            showDanger: function (message, delay) {
+                this.showMessage('danger', message, delay);
+            },
+            showSuccess: function (message, delay) {
+                this.showMessage('success', message, delay);
+            },
+            siteUrl: function (path) {
+                return 'http://test.online.est5.ru//' + path
+            },
+            baseUrl: function (path) {
+                return 'http://test.online.est5.ru//' + path
+            }
+        };
+    </script>
+</head>
+
+<body class="record-choose_time">
+<nav id="main-nav" class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#main-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/" style="color: #f8f0d2;">ЭСТЕТИК</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="main-navbar-collapse">
+            <ul class="nav navbar-nav nabvbar-menu">
+                <li><a href="http://est5.ru/tsentr-krasoty-i-zdorovya/vzroslye.html" target="_blank">Услуги красоты</a>
+                </li>
+                <li><a href="http://est5.ru/klinika-stomatologii-i-implantologii/vzroslye.html" target="_blank">Стоматология</a>
+                </li>
+                <li><a href="http://est5.ru/detskij-tsentr-razvitiya-i-tvorchestva.html" target="_blank">Детский
+                        центр</a></li>
+                <li><a href=" http://est5.ru/tsentr-samorazvitiya-i-samopoznaniya/joga.html" target="_blank">Йога</a>
+                </li>
+                <li><a href="http://est-shop.ru/" target="_blank">Интернет-магазин</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="http://test.online.est5.ru/dashboard">Личный кабинет</a></li>
+                                    <li><a href="http://test.online.est5.ru/auth/logout">Выйти</a></li>
+                            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="page-header contact-block-header">
+    <div class="container">
+        <div class="row">
+            <div class="logo hidden-xs">
+                <a href="http://test.online.est5.ru/">
+                                            <img src="http://test.online.est5.ru/images/logo.png"/>
+                                    </a>
+            </div>
+            <div class="contacts">
+                <div class="row">
+                    <div class="address">
+                        <img src="http://test.online.est5.ru/images/icon-location.png" alt=""/>
+                        Москва, Алтуфьевское шоссе, 56
+                    </div>
+                    <div class="email">
+                        <img src="http://test.online.est5.ru/images/icon-email.png" alt=""/>
+                        <a href="mailto:direktor@est5.ru">direktor@est5.ru</a>
+                    </div>
+                    <div class="phone">
+                        <img src="http://test.online.est5.ru/images/icon-phone.png" alt=""/>
+                        +7 (495) 707 03 03
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="global-messages" class="container">
+    </div><div id="choose-time" class="container white-container">
+    
+<div class="steps steps3">
+  	<div class="step passed">
+		<span class="value">1</span> шаг
+		<span class="title">Выбери услугу</span>
+	</div>
+		<div class="step active">
+		<span class="value">2</span> шаг
+		<span class="title">Выбери дату и время</span>
+	</div>
+		<div class="step ">
+		<span class="value">3</span> шаг
+		<span class="title">Подтверди запись</span>
+	</div>
+	</div>
+    <form id="time-form" class="form" role="form">
+        <div class="row">
+            <div class="choose-date col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <div class="form-group">
+                    <h3 class="choose-date-title">Выбери дату</h3>
+                    <div class="preloader-block" align="center">
+                        <img src="img/loading.gif"/>
+                        <div class="message">Загрузка расписания мастеров</div>
+                    </div>
+                    <div class="datepicker-block" style="display: none;">
+                        <input id="date" type="date" name="date" class="form-control hidden"/>
+                        <div id="datepicker" class="col-lg-12" data-date-start-date="+0d"
+                             data-date-end-date="+60d"
+                             data-dates-available=""></div>
+
+                        <div id="datepicker2" class="col-lg-12" data-date-start-date="+0d"
+                             data-date-end-date="+60d"
+                             data-dates-available=""></div>
+                        <div class="free-time-filter">
+                            <select class="free-time-select">
+                                <option value="">Выбери удобный промежуток времени</option>
+                                <option value="0912">09:00-12:00</option>
+                                <option value="1215">12:00-15:00</option>
+                                <option value="1518">15:00-18:00</option>
+                                <option value="1822">18:00-22:00</option>
+                                <option value="all">Весь рабочий день</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                <!-- Разметка выбора времени посещения для услуги -->
+                <h3 class="choose-time-title">Выбери время</h3>
+                <div class="choose-time-help help-block">Зеленым цветом отображаются свободные часы для записи к
+                    мастеру
+                </div>
+                <!-- div class="form-group">
+                    <p id="add-service-hint" class="col-sm-12 help-block">
+                    Добавь одну или несколько услуг.
+                    </p>
+                </div -->
+                <div id="services-list">
+                    <div id="service-46" data-service-id="46" class="service form-group">
+    <input type="hidden" name="services[]" value="46"/>
+    <input type="hidden" name="service_remote_id" value="00000001103"/>
+    <div class="time">
+        <select data-toggle="popover" id="select-time" name="services-time[46]"
+                class="selectpicker form-control"
+                data-size="10"
+                data-time="">
+        </select>
+        <span class="glyphicon glyphicon-exclamation-sign text-danger"></span>
+    </div>
+    <ul class="data">
+        <li class="service-title">Услуга: <span class="value">01. Маникюр обрезной, без покрытия </span>
+            <span class="glyphicon glyphicon-remove-sign glyphicon-red btn-remove-service"></span>
+                    </li>
+        <li class="duration">
+            <!-- span class="glyphicon glyphicon-time"></span -->
+            Продолжительность:
+            <span class="value">0 мин.</span>
+            <span class="hidden"></span>
+        </li>
+        <!--        <li>--><!--</li>-->
+        <li class="master-class">Квалификация: <span class="value">?</span></li>
+        <li class="master">
+            Мастер:
+            <span class="value">?</span>
+                    </li>
+        <li class="price">Стоимость: <span class="value">?</span></li>
+        <li class="group_busy" style="display: none;">Записано на выбранное время: <span class="value">?</span></li>
+        <li class="group_count" style="display: none;">Максимальное кол-во человек: <span class="value">?</span></li>
+        <li class="is_group" style="display: none;"></li>
+        <li class="info">
+            <input id="info" type="text" name="info[]" class="form-control hidden"/>
+            <span class="title"></span>
+            <span class="value"></span>
+            <a class="bold-orange-link writeClientFact"><span class="glyphicon glyphicon-user"></span> Записать друга
+                или родственника</a><br/>
+        </li>
+        <a class="bold-orange-link openModalWaitingList"><span class="glyphicon glyphicon-warning-sign"></span>
+            Не нашел свободного времени? <br/> Оставь заявку в листе ожидания!</a>
+        <li class="err" style="color: red;"></li>
+        <li class="success" style="color: green;"></li>
+    </ul>
+    <div class="master-xs visible-xs">
+        <input type="hidden" name="master[46][]" value=""/>
+        <select class="service-master-select form-control" style="display:none;"></select>
+    </div>
+</div>                </div>
+                            </div>
+        </div>
+    </form>
+    <!-- Панель добавления услуг -->
+
+    <!-- Nav buttons -->
+    <br/>
+    <div class="row">
+        <div class="col-lg-8 col-md-6 col-sm-6 col-xs-6">
+            <a id="choose-time-submit"
+                class="col-lg-3 col-md-2 col-sm-12 col-xs-12 btn btn-lg btn-success"
+                href="http://test.online.est5.ru/record/review"
+                data-submit="http://test.online.est5.ru/record/time/submit"
+                disabled>Далее
+            </a>
+        </div>
+        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
+            <div class="row">
+                <div class="col-lg-6 col-md-5 col-sm-12 col-xs-12">
+                    <a id="choose-master-back"
+                       href="http://test.online.est5.ru/record/services"
+                       class="btn btn-lg btn-default btn-prev">Назад</a>
+                </div>
+                <div class="col-lg-6 col-md-5 col-sm-6 col-xs-6">
+                    <a id="choose-master-cancel" href="http://test.online.est5.ru/record/cancel"
+                       class="btn btn-lg btn-primary btn-cancel">Отмена</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <!-- Nav buttons -->
+</div>
+
+<div class="modal fade" id="clientFactModal" tabindex="-1" role="dialog" aria-labelledby="clientFactModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="clientFactModalLabel">Записать друга или родственника</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Укажите фамилию и имя вашего родственника или друга:</label>
+                    <input type="text" name="info" class="form-control" placeholder="Иванов Иван"/>
+                    <div class="help-block">Если вы решите придти на выбранную услугу лично - не заполняйте это поле и
+                        нажмите кнопку "Закрыть".
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary client-fact-save">Сохранить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="clientFactModal" tabindex="-1" role="dialog" aria-labelledby="clientFactModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="clientFactModalLabel">Записать друга или родственника</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Укажите фамилию и имя вашего родственника или друга:</label>
+                    <input type="text" name="info" class="form-control" placeholder="Иванов Иван"/>
+                    <div class="help-block">Если вы решите придти на выбранную услугу лично - не заполняйте это поле и
+                        нажмите кнопку "Закрыть".
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary client-fact-save">Сохранить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalWaitingList" tabindex="-1" role="dialog" aria-labelledby="labelWaitingList"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="form" id="formWaitingList">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="clientFactModalLabel">Оставить заявку администратору</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger" style="display: none;" id="wlAlertErr">Ошибка при запросе добавления
+                        заявки! Попробуйте позже.
+                    </div>
+                    <div class="alert alert-success" style="display: none;" id="wlAlertSuccess">
+                        <strong>Ваша заявка принята и внесена в лист ожидания!</strong><br/>
+                        Если мастер освободится, с вами свяжется администратор!
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Дата услуги:</label>
+                        <input type="date" name="wldate" class="form-control" id="date" value="2017-05-14"
+                               required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Удобное для вас время:</label>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                <select class="form-control" name="hour_from" id="hour_from" required>
+                                    <option value="">C</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-xs-6 col-sm-6">
+                                <select class="form-control" name="hour_till" required>
+                                    <option value="">По</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Любимый мастер:</label>
+                        <select class="form-control" name="favorite_master" id="hour_from" required>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ваш номер телефона:</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">+7</span>
+                            <input id="client_phone" type="text" name="client_phone" class="form-control col-lg-6"
+                                   value="9177158894" required placeholder="9051234567"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" name="client_id" value="022415"/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-primary" id="btnWaitingListSend">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalMessage" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">ОК</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script language="javascript">
+    window.onload = function () {
+        InitChooseTime();
+    };
+</script><div class="page-header contact-block-footer">
+    <div class="container">
+        <div class="row">
+            <div class="contacts">
+                <div class="row">
+                    <div class="address">
+                        <img src="http://test.online.est5.ru/images/icon-location.png" alt=""/>
+                        Москва, Алтуфьевское шоссе, 56
+                    </div>
+                    <div class="email">
+                        <img src="http://test.online.est5.ru/images/icon-email.png" alt=""/>
+                        <a href="mailto:direktor@est5.ru">direktor@est5.ru</a>
+                    </div>
+                    <div class="phone">
+                        <img src="http://test.online.est5.ru/images/icon-phone.png" alt=""/>
+                        <a href="tel:84957070303">+7 (495) 707 03 03</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript" src="script/plugins.min.js"></script>
+    <script type="text/javascript" src="script/estethic.min.js"></script>
+    <script type="text/javascript" src="script/less.js"></script>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function (d, w, c) {
+            (w[c] = w[c] || []).push(function () {
+                try {
+                    w.yaCounter30026279 = new Ya.Metrika({
+                        id: 30026279,
+                        webvisor: true,
+                        clickmap: true,
+                        trackLinks: true,
+                        accurateTrackBounce: true
+                    });
+                } catch (e) {
+                }
+            });
+
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function () {
+                    n.parentNode.insertBefore(s, n);
+                };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript>
+        <div><img src="//mc.yandex.ru/watch/30026279" style="position:absolute; left:-9999px;" alt=""/></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+
+</body>
+</html>

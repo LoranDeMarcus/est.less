@@ -1,0 +1,74 @@
+// ----------------------------------------------------------------------
+// Local import
+// ----------------------------------------------------------------------
+//@import "utils/_mixins.less";
+@import "utils/_variables.less";
+//@import "utils/_reset.less";
+
+
+// ----------------------------------------------------------------------
+// If module is large, use partials import
+// ----------------------------------------------------------------------
+//@import "partials/_partial.less";
+//@import "partials/_piece-something.less";
+
+
+// ----------------------------------------------------------------------
+// All module less code here
+// ----------------------------------------------------------------------
+
+.progress {
+  background-image: -webkit-linear-gradient(top, @progress-bg-color-1 0, @progress-bg-color-2 100%);
+  background-image: -o-linear-gradient(top, @progress-bg-color-1 0, @progress-bg-color-2 100%);
+  background-image: linear-gradient(to bottom, @progress-bg-color-1 0, @progress-bg-color-2 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebebeb', endColorstr='#fff5f5f5', GradientType=0);
+}
+.progress-bar {
+  background-image: -webkit-linear-gradient(top, @progress-bar-bg-color-1 0, @progress-bar-bg-color-2 100%);
+  background-image: -o-linear-gradient(top, @progress-bar-bg-color-1 0, @progress-bar-bg-color-2 100%);
+  background-image: linear-gradient(to bottom, @progress-bar-bg-color-1 0, @progress-bar-bg-color-2 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff8c957', endColorstr='#fff6b926', GradientType=0);
+}
+.progress-bar-success {
+  background-image: -webkit-linear-gradient(top, @progress-bar-success-bg-color-1 0, @progress-bar-success-bg-color-2 100%);
+  background-image: -o-linear-gradient(top, @progress-bar-success-bg-color-1 0, @progress-bar-success-bg-color-2 100%);
+  background-image: linear-gradient(to bottom, @progress-bar-success-bg-color-1 0, @progress-bar-success-bg-color-2 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5cb85c', endColorstr='#ff449d44', GradientType=0);
+}
+.progress-bar-info {
+  background-image: -webkit-linear-gradient(top, @progress-bar-info-bg-color-1 0, @progress-bar-info-bg-color-2 100%);
+  background-image: -o-linear-gradient(top, @progress-bar-info-bg-color-1 0, @progress-bar-info-bg-color-2 100%);
+  background-image: linear-gradient(to bottom, @progress-bar-info-bg-color-1 0, @progress-bar-info-bg-color-2 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff31b0d5', GradientType=0);
+}
+.progress-bar-warning {
+  background-image: -webkit-linear-gradient(top, @progress-bar-warning-bg-color-1 0, @progress-bar-warning-bg-color-2 100%);
+  background-image: -o-linear-gradient(top, @progress-bar-warning-bg-color-1 0, @progress-bar-warning-bg-color-2 100%);
+  background-image: linear-gradient(to bottom, @progress-bar-warning-bg-color-1 0, @progress-bar-warning-bg-color-2 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff0ad4e', endColorstr='#ffec971f', GradientType=0);
+}
+.progress-bar-danger {
+  background-image: -webkit-linear-gradient(top, @progress-bar-danger-bg-color-1 0, @progress-bar-danger-bg-color-2 100%);
+  background-image: -o-linear-gradient(top, @progress-bar-danger-bg-color-1 0, @progress-bar-danger-bg-color-2 100%);
+  background-image: linear-gradient(to bottom, @progress-bar-danger-bg-color-1 0, @progress-bar-danger-bg-color-2 100%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9534f', endColorstr='#ffc9302c', GradientType=0);
+}
+.progress-bar-striped {
+  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+}
+
+// ----------------------------------------------------------------------
+// All module media queries here (after both code)
+// ----------------------------------------------------------------------
+
+//@media @smartphones {
+//  font-size: @font-size--medium;
+//}
